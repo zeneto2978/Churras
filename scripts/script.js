@@ -1,0 +1,74 @@
+// Carne - 400 gr por pessoa   + de 6 horas - 650
+// Cerveja - 1200 ml por Pessoa + 6 horas - 2000 ml
+// Refrigerante/agua - 1000 ml por pessoa + 6 horas 1500ml
+
+// Crianças valem por 0,5
+
+let inputAdultos = document.getElementById("adultos");
+let inputCriancas = document.getElementById("criancas");
+let inputDuracao = document.getElementById("duracao");
+
+let resultado = document.getElementById("resultado");
+
+function calcular() {
+  console.log("Calculando...");
+
+  let adultos = inputAdultos.value;
+  let criancas = inputCriancas.value;
+  let duracao = inputDuracao.value;
+
+  let qdtTotalCarne =
+    carnePP(duracao) * adultos + (carnePP(duracao) / 2) * criancas;
+  let qdtTotalCerveja = cervejaPP(duracao) * adultos;
+  let qdtTotalBebidas =
+    bebidasPP(duracao) * adultos + (bebidasPP(duracao) / 2) * criancas;
+
+  resultado.innerHTML = `<p>${qdtTotalCarne / 1000} Kg de Carne</p>`;
+  resultado.innerHTML += `<p>${Math.ceil(
+    qdtTotalCerveja / 355
+  )} Latas de Cerveja</p>`;
+  resultado.innerHTML += `<p>${Math.ceil(
+    qdtTotalBebidas / 2000
+  )} Pet's 2l de Bebidas</p>`;
+}
+
+function carnePP(duracao) {
+  if (duracao >= 6) {
+    return 650;
+  } else {
+    return 400;
+  }
+}
+
+function cervejaPP(duracao) {
+  if (duracao >= 6) {
+    return 2000;
+  } else {
+    return 1200;
+  }
+}
+function bebidasPP(duracao) {
+  if (duracao >= 6) {
+    return 1500;
+  } else {
+    return 1000;
+  }
+}
+
+
+// function novoAluno(nome, idade) {
+//     return {nome, idade}
+// }
+
+// let alunos = [
+//     novoAluno('Mario', 23),
+//     novoAluno('Jose', 45),
+//     novoAluno('Marcia', 29),
+//     novoAluno('joao', 35),
+// ]
+
+// function temMenosde30 (aluno) {
+//     return aluno.idade < 30;
+// }
+
+// console.log(alunos.filter(temMenosde30))
